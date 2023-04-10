@@ -1,0 +1,112 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>Window</artifactId>
+  <version>1.0.0</version>
+
+<repositories>
+  <repository>
+    <id>eclipse-swt</id>
+    <url>https://download.eclipse.org/eclipse/updates/4.27/R-4.27-202303020300/</url>
+  </repository>
+  <repository>
+        <id>eclipse-swt-repo</id>
+        <name>Eclipse SWT Repository</name>
+        <url>http://maven.eclipse.org/nexus/content/repositories/swt-releases/</url>
+    </repository>
+    <repository>
+        <id>local-repo</id>
+        <name>Local Repository</name>
+        <url>file:///home/ibr/myGit/BIH/Anonymization/chatGPTswt/lib</url>
+    </repository>
+</repositories>
+
+
+      <dependencies>
+        <dependency>
+        <groupId>org.eclipse.swt</groupId>
+        <artifactId>org.eclipse.swt.linux.x86_64</artifactId>
+        <version>4.27</version>
+        </dependency>
+      </dependencies>
+
+ 
+
+<build>
+<plugins>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+    <configuration>
+      <source>7</source>
+      <target>7</target>
+    </configuration>
+  </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.2.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>com.example.Window</mainClass>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+          </manifest>
+        </archive>
+        <outputDirectory>${project.build.directory}/dist</outputDirectory>
+      </configuration>
+      <executions>
+        <execution>
+          <id>jar-with-dependencies</id>
+          <goals>
+            <goal>jar</goal>
+          </goals>
+          <phase>package</phase>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>lib/</classpathPrefix>
+              </manifest>
+            </archive>
+            <finalName>${project.artifactId}-${project.version}</finalName>
+            <classifier>jar-with-dependencies</classifier>
+            <outputDirectory>${project.build.directory}/dist</outputDirectory>
+            <includes>
+              <include>**/*.class</include>
+            </includes>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>3.2.1</version>
+    <configuration>
+        <createDependencyReducedPom>false</createDependencyReducedPom>
+        <transformers>
+            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                <mainClass>com.example.Window</mainClass>
+            </transformer>
+        </transformers>
+    </configuration>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
+        </execution>
+    </executions>
+    </plugin>
+
+
+</plugins>
+</build>
+
+</project>

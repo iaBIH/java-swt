@@ -1,0 +1,32 @@
+<project name="swt-example" default="run">
+
+  <property name="swt.jar" location="lib/swt.jar"/>
+
+  <target name="clean">
+    <delete dir="classes"/>
+    <delete dir="dist"/>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="classes"/>
+    <javac srcdir="src" destdir="classes">
+      <classpath>
+        <pathelement location="lib/swt.jar"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <mkdir dir="dist"/>
+    <jar destfile="dist/swt-example.jar">
+      <fileset dir="classes"/>
+      <zipfileset src="lib/swt.jar" excludes="META-INF/*.SF,META-INF/*.DSA,META-INF/*.RSA"/>
+      <manifest>
+        <attribute name="Main-Class" value="com.example.Window"/>
+      </manifest>
+    </jar>
+  </target>
+    <target name="run" depends="jar">
+        <java jar="dist/swt-example.jar" fork="true"/>
+    </target>
+</project>

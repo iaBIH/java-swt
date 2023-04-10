@@ -1,9 +1,14 @@
 # Jave SWT Example
 
-## this is a simple working example of building java swt application using maven and ant
+This is a simple working example of building java swt application using maven and ant.
 
+The example create a window in the center of the screen. The window has a button when clicked, it changes the window title. 
+
+
+![Screenshot from 2023-04-10 16-45-33](https://user-images.githubusercontent.com/28802516/230925111-18bd8be0-7896-4786-a3c8-cfbd0c30d2bf.png)
 
 ### building and running using ant
+
 
 
 
